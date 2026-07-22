@@ -3,7 +3,7 @@ import { languages } from "./languages.js";
 import { clsx } from "clsx";
 
 export default function App() {
-  const words = languages.map((lang) => lang.name);
+  const words = languages.map((lang) => lang.name.toLowerCase());
   const [winningGame, setwinningGame] = useState("You win");
   const [currentWord, setCurrentWord] = useState(
     () => words[Math.floor(Math.random() * words.length)],
