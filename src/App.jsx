@@ -6,7 +6,7 @@ export default function App() {
   const words = languages.map((lang) => lang.name);
   const [winningGame, setwinningGame] = useState("You win");
   const [currentWord, setCurrentWord] = useState(
-    words[Math.floor(Math.random() * words.length)],
+    () => words[Math.floor(Math.random() * words.length)],
   );
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
