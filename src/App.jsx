@@ -3,12 +3,16 @@ import { languages } from "./languages.js";
 import { clsx } from "clsx";
 
 export default function App() {
+  const words = languages.map((lang) => lang.name);
   const [winningGame, setwinningGame] = useState("You win");
-  const [currentWord, setCurrentWord] = useState("react");
+  const [currentWord, setCurrentWord] = useState(
+    words[Math.floor(Math.random() * words.length)],
+  );
+
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
   const [guessLetter, setGuessLetter] = useState([]);
-  console.log(guessLetter);
+
   function handleLetter(letter) {
     setGuessLetter((prevLetters) =>
       prevLetters.includes(letter) ? prevLetters : [...prevLetters, letter],
@@ -30,15 +34,17 @@ export default function App() {
   });
 
   function wordToLetters() {
-    const letters = currentWord.split("");
-    const letterEl = letters.map((letter, index) => {
+    return currentWord.split("").map((letter, index) => {
       return (
         <span key={index} className="letters">
-          {letter}
+          {guessLetter.includes(letter) ? letter.toUpperCase() : ""}
         </span>
       );
     });
-    return letterEl;
+  }
+
+  function start() {
+    setCurrentWord(words[Math.floor(Math.random() * words.length)]);
   }
 
   function displayLanguage() {
@@ -71,7 +77,9 @@ export default function App() {
       <section className="language-chips">{displayLanguage()}</section>
       <section className="letters-container">{wordToLetters()}</section>
       <section className="keyboard">{keyboardEls}</section>
-      <button className="new-game">New Game</button>
+      <button className="new-game" onClick={start}>
+        New Game
+      </button>
     </main>
   );
 }
