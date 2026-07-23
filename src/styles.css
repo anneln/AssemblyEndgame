@@ -60,12 +60,31 @@ h1,
 
 .language-chips {
   display: flex;
-  margin: 0 auto;
-  align-content: center;
   justify-content: center;
   gap: 3px;
   flex-wrap: wrap;
   max-width: 350px;
+  margin-inline: auto;
+}
+
+span.chips {
+  border-radius: 3px;
+  padding: 4.5px;
+  position: relative;
+}
+
+span.lost::before {
+  content: "💀";
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-size: 0.85rem;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 span {

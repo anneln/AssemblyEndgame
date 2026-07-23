@@ -8,15 +8,19 @@ export default function App() {
   const [currentWord, setCurrentWord] = useState(
     () => words[Math.floor(Math.random() * words.length)],
   );
-
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
-
   const [guessLetter, setGuessLetter] = useState([]);
+  const wrongletters = guessLetter.filter(
+    (letter) => !currentWord.includes(letter),
+  );
+  const wrongGuessCount = wrongletters.length;
+  console.log(wrongGuessCount);
 
   function handleLetter(letter) {
-    setGuessLetter((prevLetters) =>
-      prevLetters.includes(letter) ? prevLetters : [...prevLetters, letter],
-    );
+    wrongGuessCount < 8 &&
+      setGuessLetter((prevLetters) =>
+        prevLetters.includes(letter) ? prevLetters : [...prevLetters, letter],
+      );
   }
 
   const keyboardEls = alphabet.split("").map((keyboardEl) => {
@@ -48,13 +52,17 @@ export default function App() {
   }
 
   function displayLanguage() {
-    const chips = languages.map((language) => {
+    const chips = languages.map((language, index) => {
       const styles = {
         backgroundColor: language.backgroundColor,
         color: language.color,
       };
       return (
-        <span className={language.name} style={styles} key={language.name}>
+        <span
+          className={clsx("chips", { lost: index < wrongGuessCount })}
+          style={styles}
+          key={language.name}
+        >
           {language.name}
         </span>
       );
