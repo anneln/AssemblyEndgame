@@ -17,7 +17,7 @@ export default function App() {
   console.log(wrongGuessCount);
 
   function handleLetter(letter) {
-    wrongGuessCount < 8 &&
+    wrongGuessCount < languages.length &&
       setGuessLetter((prevLetters) =>
         prevLetters.includes(letter) ? prevLetters : [...prevLetters, letter],
       );
@@ -48,6 +48,7 @@ export default function App() {
   }
 
   function start() {
+    setGuessLetter([]);
     setCurrentWord(words[Math.floor(Math.random() * words.length)]);
   }
 
@@ -85,9 +86,11 @@ export default function App() {
       <section className="language-chips">{displayLanguage()}</section>
       <section className="letters-container">{wordToLetters()}</section>
       <section className="keyboard">{keyboardEls}</section>
-      <button className="new-game" onClick={start}>
-        New Game
-      </button>
+      {wrongGuessCount >= languages.length && (
+        <button className="new-game" onClick={start}>
+          New Game
+        </button>
+      )}
     </main>
   );
 }
