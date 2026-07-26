@@ -4,15 +4,25 @@ import { clsx } from "clsx";
 
 export default function App() {
   const words = languages.map((lang) => lang.name.toLowerCase());
+
   const [winningGame, setwinningGame] = useState("You win");
+
   const [currentWord, setCurrentWord] = useState(
     () => words[Math.floor(Math.random() * words.length)],
   );
+
+  const isGameOver =
+    wrongGuessCount >= languages.length - 1 ||
+    currentWord.split("").every((letter) => guessLetter.includes(letter));
+
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
+
   const [guessLetter, setGuessLetter] = useState([]);
+
   const wrongletters = guessLetter.filter(
     (letter) => !currentWord.includes(letter),
   );
+
   const wrongGuessCount = wrongletters.length;
   console.log(wrongGuessCount);
 
@@ -36,10 +46,6 @@ export default function App() {
       </button>
     );
   });
-
-  const isGameOver =
-    wrongGuessCount >= languages.length - 1 ||
-    currentWord.split("").every((letter) => guessLetter.includes(letter));
 
   function wordToLetters() {
     return currentWord.split("").map((letter, index) => {
