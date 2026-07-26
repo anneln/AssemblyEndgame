@@ -17,7 +17,7 @@ export default function App() {
   console.log(wrongGuessCount);
 
   function handleLetter(letter) {
-    wrongGuessCount < languages.length &&
+    !isGameOver &&
       setGuessLetter((prevLetters) =>
         prevLetters.includes(letter) ? prevLetters : [...prevLetters, letter],
       );
@@ -36,6 +36,10 @@ export default function App() {
       </button>
     );
   });
+
+  const isGameOver =
+    wrongGuessCount >= languages.length - 1 ||
+    currentWord.split("").every((letter) => guessLetter.includes(letter));
 
   function wordToLetters() {
     return currentWord.split("").map((letter, index) => {
@@ -86,7 +90,7 @@ export default function App() {
       <section className="language-chips">{displayLanguage()}</section>
       <section className="letters-container">{wordToLetters()}</section>
       <section className="keyboard">{keyboardEls}</section>
-      {wrongGuessCount >= languages.length && (
+      {isGameOver && (
         <button className="new-game" onClick={start}>
           New Game
         </button>
