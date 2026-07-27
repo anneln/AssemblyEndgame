@@ -108,11 +108,7 @@ export default function App() {
         </p>
       </header>
       <section
-        className={clsx(
-          "game-status",
-          { win: isGameWon },
-          { loose: isGameLost },
-        )}
+        className={clsx("game-status", { win: isGameWon, loose: isGameLost })}
       >
         {gameStatus}
       </section>
