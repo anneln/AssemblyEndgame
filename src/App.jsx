@@ -5,19 +5,15 @@ import { clsx } from "clsx";
 export default function App() {
   const words = languages.map((lang) => lang.name.toLowerCase());
 
-  const [winningGame, setwinningGame] = useState("You win");
-
   const [currentWord, setCurrentWord] = useState(
     () => words[Math.floor(Math.random() * words.length)],
   );
 
-  const isGameOver =
-    wrongGuessCount >= languages.length - 1 ||
-    currentWord.split("").every((letter) => guessLetter.includes(letter));
-
-  const alphabet = "abcdefghijklmnopqrstuvwxyz";
-
   const [guessLetter, setGuessLetter] = useState([]);
+
+  const isGameWon = currentWord
+    .split("")
+    .every((letter) => guessLetter.includes(letter));
 
   const wrongletters = guessLetter.filter(
     (letter) => !currentWord.includes(letter),
@@ -25,6 +21,28 @@ export default function App() {
 
   const wrongGuessCount = wrongletters.length;
   console.log(wrongGuessCount);
+
+  const isGameLost = wrongGuessCount >= languages.length - 1;
+
+  const isGameOver = isGameLost || isGameWon;
+
+  const gameStatus = isGameWon ? (
+    <div>
+      <h2>You win!</h2>
+      <p>Well done! 🎉</p>
+    </div>
+  ) : isGameLost ? (
+    <div>
+      <h2>Game Over</h2>
+      <p>You lose! Better start learning Assembly 😭</p>
+    </div>
+  ) : (
+    <div className="started">
+      <p>Farewell HTML & CSS 🫡 </p>
+    </div>
+  );
+
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
   function handleLetter(letter) {
     !isGameOver &&
@@ -89,9 +107,14 @@ export default function App() {
           from Assembly!
         </p>
       </header>
-      <section className="game-status">
-        <h2>{winningGame}</h2>
-        <p className="alert-message">Well done</p>
+      <section
+        className={clsx(
+          "game-status",
+          { win: isGameWon },
+          { loose: isGameLost },
+        )}
+      >
+        {gameStatus}
       </section>
       <section className="language-chips">{displayLanguage()}</section>
       <section className="letters-container">{wordToLetters()}</section>
