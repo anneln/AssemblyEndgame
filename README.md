@@ -1,6 +1,6 @@
 # Assembly: Endgame 🎮
 
-A Scrimba exercise I rebuilt from scratch — a hangman-style game where every wrong guess "eliminates" a programming language. Run out of lives, and Assembly is waiting for you 😭
+A Scrimba exercise I rebuilt from scratch — a hangman-style game where every wrong guess "eliminates" a programming language.
 
 ## 🕹️ Features
 
