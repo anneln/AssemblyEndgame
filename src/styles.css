@@ -45,6 +45,7 @@ h1,
   font-style: italic;
   border-radius: 4px;
   margin-block: 30px;
+  min-height: 60px;
 }
 
 .game-status > div {

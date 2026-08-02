@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { languages } from "./languages.js";
 import { clsx } from "clsx";
 import { getFarewellText } from "./utils.js";
+import Confetti from "react-confetti";
 
 export default function App() {
   const words = languages.map((lang) => lang.name.toLowerCase());
@@ -33,10 +34,13 @@ export default function App() {
     lastGuessLetter && !currentWord.includes(lastGuessLetter);
 
   const gameStatus = isGameWon ? (
-    <div>
-      <h2>You win!</h2>
-      <p>Well done! 🎉</p>
-    </div>
+    <Fragment>
+      <Confetti />
+      <div>
+        <h2>You win!</h2>
+        <p>Well done! 🎉</p>
+      </div>
+    </Fragment>
   ) : isGameLost ? (
     <div>
       <h2>Game Over</h2>
