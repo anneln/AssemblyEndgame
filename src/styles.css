@@ -71,11 +71,11 @@ section.game-status > p {
   background-color: #10a95b;
 }
 
-.loose {
+.lose {
   background-color: #ba2a2a;
 }
 
-.started {
+.message {
   background-color: #7a5ea7;
 }
 
@@ -149,6 +149,11 @@ span {
   gap: 0.2rem;
 }
 
+.keyboard > button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .alphabet {
   background-color: #fcba29;
   border-radius: 3px;
@@ -184,4 +189,12 @@ button.new-game {
   margin-inline: auto;
   cursor: pointer;
   font-size: 1.1rem;
+}
+
+.revealLetter {
+  color: #ec5d49;
+}
+
+.classic {
+  color: #10a95b;
 }
