@@ -1,6 +1,7 @@
 # Assembly: Endgame 🎮
 
 A Scrimba exercise I rebuilt from scratch — a hangman-style game where every wrong guess "eliminates" a programming language.
+[Try the game](https://presquependu.netlify.app/)
 
 ## 🕹️ Features
 

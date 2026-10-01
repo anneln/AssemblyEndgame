@@ -52,7 +52,7 @@ export default function App() {
     </div>
   ) : null;
 
-  const alphabet = "abcdefghijklmnopqrstuvwxyz";
+  const alphabet = "abcdefghijklmnopqrstuvwxyz.";
 
   function handleLetter(letter) {
     !isGameOver &&

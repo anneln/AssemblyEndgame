@@ -53,10 +53,10 @@ h1,
   flex-direction: column;
   align-items: center;
   color: #f9f4da;
-  min-height: 50px;
+  height: 60px;
   min-width: 350px;
   border-radius: 4px;
-  padding: 0.5rem 1rem;
+  padding: 0 0.5rem 1rem;
 }
 
 section.game-status > p {
@@ -198,4 +198,76 @@ button.new-game {
 
 .classic {
   color: #10a95b;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 1.15rem;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+
+  .game-status > div {
+    min-width: 100%;
+    width: 100%;
+  }
+
+  .game-status > h2 {
+    font-size: 1rem;
+  }
+
+  .language-chips {
+    max-width: 100%;
+  }
+
+  .letters-container {
+    gap: 0.2rem;
+    margin: 1.5rem auto;
+  }
+
+  .letters {
+    width: 28px;
+    height: 38px;
+    padding: 4px;
+    font-size: 0.9rem;
+  }
+
+  .keyboard {
+    gap: 0.25rem;
+  }
+
+  .alphabet {
+    width: 30px;
+    height: 40px;
+    font-size: 1rem;
+    border-radius: 6px;
+  }
+
+  button.alphabet:hover {
+    outline: none;
+  }
+
+  button.new-game {
+    width: 100%;
+    max-width: 280px;
+    height: 46px; /*taille min pour tactile*/
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .letters {
+    width: 24px;
+    padding: 3px;
+  }
+
+  .alphabet {
+    width: 27px;
+  }
 }
